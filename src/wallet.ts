@@ -4,19 +4,20 @@ import { support } from './verifier'
 
 export const handle = () => {
   // Some request for boardDirector 999 111 999
+  const payVC = {
+    wallet: 'Wallet Y',
+    requires: {
+      type: 'NOBoardDirector',
+      credentialSubject: {
+        boardDirectorOf: '999 111 999',
+      },
+    },
+  }
   const supportPresentation = {
     nationalIdentityVC: {
       identifier: '123456789',
     },
-    payVC: {
-      wallet: 'Wallet Y',
-      requires: {
-        type: 'NOBoardDirector',
-        credentialSubject: {
-          boardDirectorOf: '999 111 999',
-        },
-      },
-    },
+    payVC,
   }
   const supportedIssuers = support(supportPresentation)
   if (!supportedIssuers) throw new Error('No issuers found')
@@ -27,7 +28,8 @@ export const handle = () => {
       identifier: '123456789',
     },
     requisitionVC: choosenIssuer.requisition,
+    payVC,
   }
-  const issued = issue(issuePresentation)
-  return supportedIssuers
+  const boardDirectorCredential = issue(issuePresentation)
+  return boardDirectorCredential
 }

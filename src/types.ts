@@ -2,26 +2,36 @@ export type SupportPresentation = {
   nationalIdentityVC: {
     identifier: string
   }
-  payVC: {
-    wallet: string
-    requires: {
-      type: string
-      credentialSubject: {
-        [key: string]: string
-      }
-    }
-  }
+  payVC: PayVC
 }
 
 export type IssuePresentation = {
   nationalIdentityVC: {
     identifier: string
   }
-  requisitionVC?: Requisition
+  requisitionVC: Requisition
+  payVC: PayVC
+}
+
+export type PayVC = {
+  wallet: string
+  requires: {
+    type: string
+    credentialSubject: {
+      [key: string]: string
+    }
+  }
+}
+
+export type NOBoardDirectorVC = {
+  credentialSubject: {
+    id: string
+    boardDirectorOf: string
+  }
 }
 
 export type Requisition = {
-  id: '123'
+  id: string
   credentialSubject: {
     id: string
     [key: string]: string

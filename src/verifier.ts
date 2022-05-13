@@ -1,17 +1,6 @@
 import { supportedIssuers } from './payvc'
+import { validateAndGetNationalIdentityVC, validateAndGetPayVC } from './shared'
 import { SupportPresentation } from './types'
-
-export const validateAndGetNationalIdentityVC = (
-  presentation: SupportPresentation,
-) => {
-  // Check if valid
-  return presentation.nationalIdentityVC
-}
-
-export const validateAndGetPayVC = (presentation: SupportPresentation) => {
-  // Check if valid
-  return presentation.payVC
-}
 
 // Function to return a list of issuers that support
 export const support = (presentation: SupportPresentation) => {

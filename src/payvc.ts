@@ -1,4 +1,4 @@
-import { Issuer, IssuerListInput, VC } from './types'
+import { Issuer, IssuerListInput, Requisition, VC } from './types'
 
 const vcs: VC[] = [
   {
@@ -39,4 +39,12 @@ export const supportedIssuers = (input: IssuerListInput) => {
         },
       }
     })
+}
+
+export const valid = (requisition: Requisition, fullfill = false) => {
+  return true
+}
+
+export const consume = (requisition: Requisition, fullfill = false) => {
+  return true
 }
